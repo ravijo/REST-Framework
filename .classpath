@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_29"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar" sourcepath="C:/Java_Packages/log4j-1.2.17.zip"/>
+	<classpathentry kind="lib" path="lib/minimal-json.jar"/>
+	<classpathentry kind="lib" path="lib/odfdom-0.8.7.jar"/>
+	<classpathentry kind="lib" path="lib/simple-odf-0.6.6.jar" sourcepath="D:/Documents and Settings/ravij/My Documents/My-Backup/Drive-C/Eclipse_Lib/Apache_ODF_Toolkit"/>
+	<classpathentry kind="lib" path="lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="lib/restclient-cli-3.2.2-jar-with-dependencies.jar" sourcepath="C:/Java_Packages/rest-client-3.2.2.zip"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Altair Web Portal Framework Services Testing" basedir="." default="Run-All-Tests">
+	<property name="ROOT" value="." />
+	<property name="SRC" value="${ROOT}/src" />
+	<property name="LIB" value="${ROOT}/lib" />
+	<property name="BIN" value="${ROOT}/bin" />
+	<property name="BUILD" value="${ROOT}/build" />
+	<property name="REPORT" value="${ROOT}/build/reports" />
+	<property name="TESTS" value="services/rest/executor" />
+
+
+	<description>Builds, tests, and runs the Job Service Port.</description>
+	<path id="test.classpath">
+		<!-- Creating a classpath for use while compiling -->
+		<pathelement location="${BIN}" />
+		<fileset dir="${LIB}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	<target name="init">
+		<!-- Initialization target which deletes and recreates the binary folder.-->
+		<delete dir="${BIN}" />
+		<mkdir dir="${BIN}" />
+	</target>
+	<target name="compile" depends="init">
+
+		<!-- Create the time stamp -->
+		<tstamp>
+			<format property="lastUpdated" pattern="dd-MM-yyyy HH:mm:ss" />
+		</tstamp>
+		<!-- Target for compiling the source folder  -->
+		<javac includeantruntime="false" source="1.6" debug="on" srcdir="${SRC}" fork="true" destdir="${BIN}">
+			<classpath>
+				<pathelement path="${BIN}">
+				</pathelement>
+				<fileset dir="${LIB}">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="Run-All-Tests" depends="compile">
+		<!-- Target to run test in batches. -->
+		<delete dir="${REPORT}" />
+		<mkdir dir="${REPORT}" />
+		<mkdir dir="${REPORT}/xml" />
+		<sequential>
+			<junit printsummary="yes" haltonfailure="no">
+				<classpath>
+					<pathelement location="${BIN}" />
+					<pathelement location="${SRC}" />
+					<fileset dir="${LIB}">
+						<include name="**/*.jar" />
+					</fileset>
+				</classpath>
+				<formatter type="xml" usefile="true" />
+				<batchtest fork="yes" todir="${REPORT}/xml">
+					<fileset dir="${SRC}">
+						<include name="**/${TESTS}/*TestCaseExecutor.java" />
+					</fileset>
+				</batchtest>
+			</junit>
+			<junitreport todir="${REPORT}">
+				<fileset dir="${REPORT}/xml">
+					<include name="TEST*.xml" />
+				</fileset>
+				<report styledir="reportstyle" format="frames" todir="${REPORT}/html" />
+			</junitreport>
+		</sequential>
+	</target>
+
+</project>
